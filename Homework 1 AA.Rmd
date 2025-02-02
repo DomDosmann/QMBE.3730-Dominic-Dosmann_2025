@@ -1,0 +1,53 @@
+---
+title: "AA assignment 1"
+author: "Dom Dosmann"
+date: "2025-02-02"
+output: pdf_document
+---
+## Install packages and libraries
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+install.packages(c("tidyverse", "ggplot2", "summarytools"))
+
+library(tidyverse)  
+library(ggplot2)  
+library(summarytools) 
+
+```
+
+
+## Import Data Set
+```{r}
+Netflix <- read.csv("netflix_titles.csv")
+```
+# The data is about Netflix movies and tv shows and when they are released, who is starred in them, who directs it and a couple other categories. I found out because of this dataset that each show and movie has its own unique ID. Another thing I found interesting was how many ratings there are on shows because I wanted to make a graph on the amount of each rating but couldn't because there were too many ratings to fit on a graph. The part I struggled with the most was figuring out a graph I could use since the dataset has a length of 8,807.
+
+## Quick Analysis
+```{r}
+colnames(Netflix)
+```
+# By using the colnames I am able to figure out all of the 12 column titles and represent what the dataset is more about without using all 8000 variables in the dataset.
+```{r}
+summary(Netflix)
+```
+# using summary I am able to crasp wether the variables are categorical, integers, or numeric. 
+```{r}
+head(Netflix)
+```
+
+```{r}
+tail(Netflix)
+```
+# Head and tail command show what a couple of the rows of data look like.  
+
+## Tables
+```{r pressure, echo=FALSE}
+# Bar plot for a single categorical variable
+ggplot(Netflix, aes(x = factor(type))) + 
+  geom_bar(fill = "blue", color = "black") +
+  labs(title = "Freuquency of entertainment type", x = "Type", y = "Amount") +
+  theme_minimal()
+
+```
+# This graph shows the amount of movies and Tv shows that have been released to netflix. 
